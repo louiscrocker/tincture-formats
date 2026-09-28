@@ -1,0 +1,2361 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:7f0a2d4e-1c3b-4b8e-9a6d-2e5f0c1d8b47",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-28T12:00:00Z",
+    "lifecycles": [
+      {
+        "phase": "operations"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "tincture",
+          "version": "0.1.0-draft",
+          "description": "tincture inventory --format cbom (docs/spec/13-inventory.md)",
+          "supplier": {
+            "name": "BADWOLF Software"
+          }
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "bom-ref": "deployment:badwolf.software/acme/prod",
+      "name": "badwolf.software/acme/prod",
+      "version": "42",
+      "description": "Tincture deployment (one blazon namespace). ILLUSTRATIVE: key versions, counts, bytes, dates and counters in this document are invented for the specification's worked example; only the blazon structure, suite registry data and derived identifiers are real."
+    },
+    "properties": [
+      {
+        "name": "tincture:inventory:schema",
+        "value": "tincture-inventory/0.1"
+      },
+      {
+        "name": "tincture:inventory:scanned-at",
+        "value": "2026-09-28T12:00:00Z"
+      },
+      {
+        "name": "tincture:inventory:sources",
+        "value": "fs:/srv/acme/data;s3:acme-prod-blobs/;db:crm.contacts.ssn;db:licensing.licences.blob"
+      },
+      {
+        "name": "tincture:inventory:redaction",
+        "value": "internal"
+      },
+      {
+        "name": "tincture:inventory:illustrative",
+        "value": "true"
+      },
+      {
+        "name": "tincture:envelopes:count",
+        "value": "3592034"
+      },
+      {
+        "name": "tincture:envelopes:bytes",
+        "value": "181724683944"
+      },
+      {
+        "name": "tincture:envelopes:malformed",
+        "value": "0"
+      },
+      {
+        "name": "tincture:quantum:deadline",
+        "value": "2030-01-01"
+      },
+      {
+        "name": "tincture:quantum:migration",
+        "value": "2y"
+      },
+      {
+        "name": "tincture:quantum:enforce",
+        "value": "warn"
+      },
+      {
+        "name": "tincture:quantum:slack",
+        "value": "2y"
+      },
+      {
+        "name": "tincture:quantum:debt:count",
+        "value": "1203400"
+      },
+      {
+        "name": "tincture:quantum:debt:bytes",
+        "value": "1082860000"
+      },
+      {
+        "name": "tincture:audit:checkpoints",
+        "value": "41120"
+      },
+      {
+        "name": "tincture:audit:checkpoint-suite",
+        "value": "0x0320"
+      },
+      {
+        "name": "tincture:audit:boundaries",
+        "value": "3"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:aes-256-gcm",
+      "name": "AES-256-GCM",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "256",
+          "mode": "gcm",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "2.16.840.1.101.3.4.1.46"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:chacha20-poly1305",
+      "name": "ChaCha20-Poly1305",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "256",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "1.2.840.113549.1.9.16.3.18"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:dhkem-p256-hkdf-sha256",
+      "name": "DHKEM-P256-HKDF-SHA256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "parameterSetIdentifier": "0x0010",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "encapsulate",
+            "decapsulate"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:dhkem-x25519-hkdf-sha256",
+      "name": "DHKEM-X25519-HKDF-SHA256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "parameterSetIdentifier": "0x0020",
+          "curve": "curve25519",
+          "cryptoFunctions": [
+            "encapsulate",
+            "decapsulate"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:ecdh-p-256",
+      "name": "ECDH-P-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "parameterSetIdentifier": "256",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "keyderive"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:ed25519",
+      "name": "Ed25519",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "curve": "edwards25519",
+          "cryptoFunctions": [
+            "keygen",
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:hkdf-sha-256",
+      "name": "HKDF-SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kdf",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "keyderive"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "1.2.840.113549.1.9.16.3.28"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:hmac-sha-256",
+      "name": "HMAC-SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "tag",
+            "verify"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:ml-dsa-65",
+      "name": "ML-DSA-65",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ML-DSA-65",
+          "cryptoFunctions": [
+            "keygen",
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        },
+        "oid": "2.16.840.1.101.3.4.3.18"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:ml-kem-768",
+      "name": "ML-KEM-768",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "parameterSetIdentifier": "ML-KEM-768",
+          "cryptoFunctions": [
+            "keygen",
+            "encapsulate",
+            "decapsulate"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        },
+        "oid": "2.16.840.1.101.3.4.4.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:sha-256",
+      "name": "SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:slh-dsa-sha2-128s",
+      "name": "SLH-DSA-SHA2-128s",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "SLH-DSA-SHA2-128s",
+          "cryptoFunctions": [
+            "keygen",
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.3.20"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:x25519",
+      "name": "X25519",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "curve": "curve25519",
+          "cryptoFunctions": [
+            "keyderive"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "alg:x25519mlkem768",
+      "name": "X25519MLKEM768",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "parameterSetIdentifier": "X25519MLKEM768",
+          "cryptoFunctions": [
+            "keygen",
+            "encapsulate",
+            "decapsulate"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:pq",
+          "value": "hybrid"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0101",
+      "name": "A256GCM-HS256",
+      "description": "Tincture suite 0x0101: AES-256-GCM, HKDF-SHA-256, SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "A256GCM-HS256",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt",
+            "keyderive"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "envelope-symmetric"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "true"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "2273834"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "180500258944"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0102",
+      "name": "C20P1305-HS256",
+      "description": "Tincture suite 0x0102: ChaCha20-Poly1305, HKDF-SHA-256, SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "C20P1305-HS256",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt",
+            "keyderive"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0102"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "envelope-symmetric"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "false"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "18500"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "4144000"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0201",
+      "name": "HPKE-X25519-A256GCM",
+      "description": "Tincture suite 0x0201: DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-256-GCM",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "parameterSetIdentifier": "HPKE-X25519-A256GCM",
+          "cryptoFunctions": [
+            "encapsulate",
+            "decapsulate",
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0201"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "envelope-sealed"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "vulnerable"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "false"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "1203400"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "1082860000"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0202",
+      "name": "HPKE-P256-A256GCM",
+      "description": "Tincture suite 0x0202: DHKEM(P-256, HKDF-SHA256), HKDF-SHA256, AES-256-GCM",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "parameterSetIdentifier": "HPKE-P256-A256GCM",
+          "cryptoFunctions": [
+            "encapsulate",
+            "decapsulate",
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0202"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "envelope-sealed"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "vulnerable"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "true"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0210",
+      "name": "HPKE-X25519MLKEM768-A256GCM",
+      "description": "Tincture suite 0x0210: X25519, ML-KEM-768, HKDF-SHA256, AES-256-GCM",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "parameterSetIdentifier": "HPKE-X25519MLKEM768-A256GCM",
+          "cryptoFunctions": [
+            "encapsulate",
+            "decapsulate",
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0210"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "envelope-sealed"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "provisional"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "hybrid"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "false"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "96300"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "137421000"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0301",
+      "name": "ED25519",
+      "description": "Tincture suite 0x0301: Ed25519",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ED25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0301"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "signature"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "vulnerable"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "true"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0320",
+      "name": "ED25519+ML-DSA-65",
+      "description": "Tincture suite 0x0320: Ed25519, ML-DSA-65",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ED25519+ML-DSA-65",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0320"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "signature"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "provisional"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "hybrid"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "false"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0330",
+      "name": "SLH-DSA-SHA2-128s",
+      "description": "Tincture suite 0x0330: SLH-DSA-SHA2-128s",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "SLH-DSA-SHA2-128s",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0330"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "signature"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "allowed"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "pq"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "true"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "suite:0x0401",
+      "name": "HMAC-SHA256",
+      "description": "Tincture suite 0x0401: HMAC, SHA-256",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HMAC-SHA256",
+          "cryptoFunctions": [
+            "tag",
+            "verify"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:suite:id",
+          "value": "0x0401"
+        },
+        {
+          "name": "tincture:suite:class",
+          "value": "mac"
+        },
+        {
+          "name": "tincture:suite:state",
+          "value": "recommended"
+        },
+        {
+          "name": "tincture:suite:pq",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:suite:fips",
+          "value": "true"
+        },
+        {
+          "name": "tincture:suite:cnsa2",
+          "value": "false"
+        },
+        {
+          "name": "tincture:registry:version",
+          "value": "0.1.0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "protocol:tnct/1",
+      "name": "Tincture envelope format",
+      "version": "1",
+      "description": "TNCT envelope format version 0x01 (docs/spec/03-envelope.md); text form tnct1.<base64url>",
+      "cryptoProperties": {
+        "assetType": "protocol",
+        "protocolProperties": {
+          "type": "other",
+          "version": "1",
+          "cipherSuites": [
+            {
+              "name": "A256GCM-HS256",
+              "algorithms": [
+                "suite:0x0101"
+              ],
+              "identifiers": [
+                "0x0101"
+              ]
+            },
+            {
+              "name": "C20P1305-HS256",
+              "algorithms": [
+                "suite:0x0102"
+              ],
+              "identifiers": [
+                "0x0102"
+              ]
+            },
+            {
+              "name": "HPKE-X25519-A256GCM",
+              "algorithms": [
+                "suite:0x0201"
+              ],
+              "identifiers": [
+                "0x0201"
+              ]
+            },
+            {
+              "name": "HPKE-X25519MLKEM768-A256GCM",
+              "algorithms": [
+                "suite:0x0210"
+              ],
+              "identifiers": [
+                "0x0210"
+              ]
+            }
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:format:magic",
+          "value": "TNCT"
+        },
+        {
+          "name": "tincture:format:version",
+          "value": "0x01"
+        },
+        {
+          "name": "tincture:format:text-prefix",
+          "value": "tnct1."
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "3592034"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "181724683944"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "signer:badwolf.software/acme/prod/owner",
+      "name": "blazon signer owner",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "public-key",
+          "id": "owner",
+          "state": "active",
+          "algorithmRef": "suite:0x0301",
+          "format": "raw"
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:signer:suite",
+          "value": "0x0301"
+        },
+        {
+          "name": "tincture:signer:pq",
+          "value": "vulnerable"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "signer:badwolf.software/acme/prod/security",
+      "name": "blazon signer security",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "public-key",
+          "id": "security",
+          "state": "active",
+          "algorithmRef": "suite:0x0301",
+          "format": "raw"
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:signer:suite",
+          "value": "0x0301"
+        },
+        {
+          "name": "tincture:signer:pq",
+          "value": "vulnerable"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "signer:badwolf.software/acme/prod/offline",
+      "name": "blazon signer offline",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "public-key",
+          "id": "offline",
+          "state": "active",
+          "algorithmRef": "suite:0x0330",
+          "format": "raw"
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:signer:suite",
+          "value": "0x0330"
+        },
+        {
+          "name": "tincture:signer:pq",
+          "value": "pq"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "blazon:badwolf.software/acme/prod@42",
+      "name": "badwolf.software/acme/prod blazon",
+      "version": "42",
+      "description": "Compiled, JCS-canonical blazon (docs/spec/06-blazon.md). Hash is over the compiled bytes.",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a38e5af9dc1152b2ee76e71d0bc70788042df3fbb99d82e007e8ee2e612b654c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "tincture:blazon:namespace",
+          "value": "badwolf.software/acme/prod"
+        },
+        {
+          "name": "tincture:blazon:spec",
+          "value": "tincture/0.1"
+        },
+        {
+          "name": "tincture:blazon:version",
+          "value": "42"
+        },
+        {
+          "name": "tincture:blazon:signers:threshold",
+          "value": "2"
+        },
+        {
+          "name": "tincture:blazon:signers:count",
+          "value": "3"
+        },
+        {
+          "name": "tincture:blazon:signers:pq",
+          "value": "true"
+        },
+        {
+          "name": "tincture:quantum:deadline",
+          "value": "2030-01-01"
+        },
+        {
+          "name": "tincture:quantum:migration",
+          "value": "2y"
+        },
+        {
+          "name": "tincture:quantum:enforce",
+          "value": "warn"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:9f3c1e7a52b84d06a1c2e3f4b5d6c7e8",
+      "name": "vert key version 9f3c1e7a",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "9f3c1e7a52b84d06a1c2e3f4b5d6c7e8",
+          "state": "active",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-07-01T00:00:00Z",
+          "activationDate": "2026-07-02T00:00:00Z",
+          "size": 256,
+          "securedBy": {
+            "mechanism": "Software",
+            "algorithmRef": "suite:0x0101"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "vert"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "1901200"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "7440315"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "software"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "1901200"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "180412160000"
+        },
+        {
+          "name": "tincture:kv:lineage",
+          "value": "bundle:0x0202"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:41d0b6f9ee2a4c7d8b1e9f0a3c5d7e21",
+      "name": "vert key version 41d0b6f9",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "41d0b6f9ee2a4c7d8b1e9f0a3c5d7e21",
+          "state": "deactivated",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-04-01T00:00:00Z",
+          "activationDate": "2026-04-02T00:00:00Z",
+          "size": 256,
+          "updateDate": "2026-07-02T00:00:00Z",
+          "securedBy": {
+            "mechanism": "Software",
+            "algorithmRef": "suite:0x0101"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "vert"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "retiring"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:kv:retired",
+          "value": "2026-07-02T00:00:00Z"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "340500"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "2210044"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "software"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "340500"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "76272000"
+        },
+        {
+          "name": "tincture:kv:lineage",
+          "value": "bundle:0x0202"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:c8a2f4e6d0b1a3c5e7f9d2b4a6c8e0f1",
+      "name": "vert key version c8a2f4e6",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "c8a2f4e6d0b1a3c5e7f9d2b4a6c8e0f1",
+          "state": "destroyed",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-01-01T00:00:00Z",
+          "activationDate": "2026-01-02T00:00:00Z",
+          "size": 256,
+          "updateDate": "2026-04-02T00:00:00Z",
+          "securedBy": {
+            "mechanism": "Software",
+            "algorithmRef": "suite:0x0101"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "vert"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "destroyed"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:kv:retired",
+          "value": "2026-04-02T00:00:00Z"
+        },
+        {
+          "name": "tincture:kv:destroyed",
+          "value": "2026-06-15T00:00:00Z"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "0"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "0"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "software"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:kv:lineage",
+          "value": "bundle:0x0202"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:2b7e151628aed2a6abf7158809cf4f3c",
+      "name": "licence key version 2b7e1516",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "2b7e151628aed2a6abf7158809cf4f3c",
+          "state": "active",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-08-15T00:00:00Z",
+          "activationDate": "2026-08-16T00:00:00Z",
+          "size": 256,
+          "securedBy": {
+            "mechanism": "HSM",
+            "algorithmRef": "suite:0x0202"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "licence"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "1204870"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "hardware-monotonic"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "15427200"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:6d1f0c9b8a7e5d4c3b2a1f0e9d8c7b6a",
+      "name": "licence-wire key version 6d1f0c9b",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "6d1f0c9b8a7e5d4c3b2a1f0e9d8c7b6a",
+          "state": "active",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-08-15T00:00:00Z",
+          "activationDate": "2026-08-16T00:00:00Z",
+          "size": 256,
+          "securedBy": {
+            "mechanism": "Software",
+            "algorithmRef": "suite:0x0101"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "licence-wire"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "48190"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "software"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9",
+      "name": "ermine key version e4f5a6b7",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9",
+          "state": "active",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-03-01T00:00:00Z",
+          "activationDate": "2026-03-01T00:00:00Z",
+          "size": 256,
+          "securedBy": {
+            "mechanism": "Software",
+            "algorithmRef": "suite:0x0101"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "ermine"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "2400"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "1"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "software"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "2400"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "537600"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+      "name": "or key version 0a1b2c3d",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "secret-key",
+          "id": "0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+          "state": "active",
+          "algorithmRef": "suite:0x0101",
+          "creationDate": "2026-03-01T00:00:00Z",
+          "activationDate": "2026-03-01T00:00:00Z",
+          "size": 256,
+          "securedBy": {
+            "mechanism": "TPM",
+            "algorithmRef": "suite:0x0202"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "or"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "24"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "12496"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "hardware-monotonic"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "24"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "6144"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "kv:f1e2d3c4b5a6978877665544332211ff",
+      "name": "purpure key version f1e2d3c4",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "private-key",
+          "id": "f1e2d3c4b5a6978877665544332211ff",
+          "state": "active",
+          "algorithmRef": "suite:0x0320",
+          "creationDate": "2026-03-01T00:00:00Z",
+          "activationDate": "2026-03-01T00:00:00Z",
+          "securedBy": {
+            "mechanism": "TPM",
+            "algorithmRef": "suite:0x0202"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:kv:tincture",
+          "value": "purpure"
+        },
+        {
+          "name": "tincture:kv:kind",
+          "value": "sign-keypair"
+        },
+        {
+          "name": "tincture:kv:state",
+          "value": "active"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:pq-tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:counters:seals",
+          "value": "41120"
+        },
+        {
+          "name": "tincture:counters:opens",
+          "value": "0"
+        },
+        {
+          "name": "tincture:counters:kind",
+          "value": "hardware-monotonic"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "recipients:badwolf.software/acme/prod/devices",
+      "name": "recipient directory devices",
+      "description": "Aggregate entry: one public key per registered device; individual recipient keys are not listed.",
+      "cryptoProperties": {
+        "assetType": "related-crypto-material",
+        "relatedCryptoMaterialProperties": {
+          "type": "public-key",
+          "state": "active",
+          "algorithmRef": "suite:0x0201",
+          "securedBy": {
+            "mechanism": "TEE"
+          }
+        }
+      },
+      "properties": [
+        {
+          "name": "tincture:recipients:count",
+          "value": "12480"
+        },
+        {
+          "name": "tincture:recipients:suites",
+          "value": "0x0201,0x0210"
+        },
+        {
+          "name": "tincture:recipients:attestation",
+          "value": "android-key,app-attest,tpm-quote"
+        },
+        {
+          "name": "tincture:tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "1299700"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "1220281000"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/azure",
+      "name": "azure",
+      "description": "Tincture 'azure' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "7cfd28f0f4eaef1c7fb71839e17682c1"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "sealed-to"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "10y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:context",
+          "value": "optional"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0201,0x0210"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "1299700"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "1220281000"
+        },
+        {
+          "name": "tincture:envelopes:mode:sealed-to",
+          "value": "1299700"
+        },
+        {
+          "name": "tincture:quantum:envelopes:hybrid",
+          "value": "96300"
+        },
+        {
+          "name": "tincture:quantum:envelopes:vulnerable",
+          "value": "1203400"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "hybrid,vulnerable"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "1203400"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "1082860000"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/ermine",
+      "name": "ermine",
+      "description": "Tincture 'ermine' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "ea20e3bc356baf6ad8887204f5d1cdb5"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:role",
+          "value": "canary"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "5y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:context",
+          "value": "optional"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "2400"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "537600"
+        },
+        {
+          "name": "tincture:envelopes:mode:direct",
+          "value": "2400"
+        },
+        {
+          "name": "tincture:quantum:envelopes:not-applicable",
+          "value": "2400"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/licence",
+      "name": "licence",
+      "description": "Tincture 'licence' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "a198f0579ca5df3a69f893f5a37d742a"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "2y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:context",
+          "value": "required"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "15427200"
+        },
+        {
+          "name": "tincture:envelopes:mode:direct",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:quantum:envelopes:not-applicable",
+          "value": "48210"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/licence-wire",
+      "name": "licence-wire",
+      "description": "Tincture 'licence-wire' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "3b6afda52d466a470fca26321caafb17"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "5y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:context",
+          "value": "optional"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/or",
+      "name": "or",
+      "description": "Tincture 'or' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "16f8bc8e901921420663ba1c64e8bade"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:role",
+          "value": "key-material"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "5y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:context",
+          "value": "optional"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "wrapped"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "24"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "6144"
+        },
+        {
+          "name": "tincture:envelopes:mode:wrapped",
+          "value": "24"
+        },
+        {
+          "name": "tincture:quantum:envelopes:not-applicable",
+          "value": "24"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/purpure",
+      "name": "purpure",
+      "description": "Tincture 'purpure' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "2b82e9317cc4641a82da69e7ed23ca9f"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "5y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T3"
+        },
+        {
+          "name": "tincture:context",
+          "value": "optional"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "none"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "tincture:badwolf.software/acme/prod/vert",
+      "name": "vert",
+      "description": "Tincture 'vert' in namespace badwolf.software/acme/prod: a named cryptographic domain whose envelopes at rest are counted here.",
+      "properties": [
+        {
+          "name": "tincture:id",
+          "value": "22eedb41c29f0fd34211bdef6dc24471"
+        },
+        {
+          "name": "tincture:kind",
+          "value": "symmetric"
+        },
+        {
+          "name": "tincture:horizon",
+          "value": "10y"
+        },
+        {
+          "name": "tincture:min-tier",
+          "value": "T2"
+        },
+        {
+          "name": "tincture:context",
+          "value": "required"
+        },
+        {
+          "name": "tincture:padding",
+          "value": "padme"
+        },
+        {
+          "name": "tincture:mode",
+          "value": "auto"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0101,0x0102"
+        },
+        {
+          "name": "tincture:envelopes:count",
+          "value": "2241700"
+        },
+        {
+          "name": "tincture:envelopes:bytes",
+          "value": "180488432000"
+        },
+        {
+          "name": "tincture:envelopes:mode:direct",
+          "value": "2180500"
+        },
+        {
+          "name": "tincture:envelopes:mode:wrapped",
+          "value": "61200"
+        },
+        {
+          "name": "tincture:quantum:envelopes:not-applicable",
+          "value": "2241700"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "n/a"
+        },
+        {
+          "name": "tincture:quantum:debt:count",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:debt:bytes",
+          "value": "0"
+        },
+        {
+          "name": "tincture:quantum:exposed",
+          "value": "true"
+        },
+        {
+          "name": "tincture:quantum:lineage",
+          "value": "bundle:0x0202"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "alg:dhkem-p256-hkdf-sha256",
+      "dependsOn": [
+        "alg:ecdh-p-256",
+        "alg:hkdf-sha-256"
+      ]
+    },
+    {
+      "ref": "alg:dhkem-x25519-hkdf-sha256",
+      "dependsOn": [
+        "alg:hkdf-sha-256",
+        "alg:x25519"
+      ]
+    },
+    {
+      "ref": "alg:x25519mlkem768",
+      "dependsOn": [
+        "alg:ml-kem-768",
+        "alg:x25519"
+      ]
+    },
+    {
+      "ref": "blazon:badwolf.software/acme/prod@42",
+      "dependsOn": [
+        "signer:badwolf.software/acme/prod/offline",
+        "signer:badwolf.software/acme/prod/owner",
+        "signer:badwolf.software/acme/prod/security"
+      ]
+    },
+    {
+      "ref": "deployment:badwolf.software/acme/prod",
+      "dependsOn": [
+        "blazon:badwolf.software/acme/prod@42",
+        "protocol:tnct/1",
+        "tincture:badwolf.software/acme/prod/azure",
+        "tincture:badwolf.software/acme/prod/ermine",
+        "tincture:badwolf.software/acme/prod/licence",
+        "tincture:badwolf.software/acme/prod/licence-wire",
+        "tincture:badwolf.software/acme/prod/or",
+        "tincture:badwolf.software/acme/prod/purpure",
+        "tincture:badwolf.software/acme/prod/vert"
+      ]
+    },
+    {
+      "ref": "kv:0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+      "dependsOn": [
+        "suite:0x0101",
+        "suite:0x0202"
+      ]
+    },
+    {
+      "ref": "kv:2b7e151628aed2a6abf7158809cf4f3c",
+      "dependsOn": [
+        "suite:0x0101",
+        "suite:0x0202"
+      ]
+    },
+    {
+      "ref": "kv:41d0b6f9ee2a4c7d8b1e9f0a3c5d7e21",
+      "dependsOn": [
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "kv:6d1f0c9b8a7e5d4c3b2a1f0e9d8c7b6a",
+      "dependsOn": [
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "kv:9f3c1e7a52b84d06a1c2e3f4b5d6c7e8",
+      "dependsOn": [
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "kv:c8a2f4e6d0b1a3c5e7f9d2b4a6c8e0f1",
+      "dependsOn": [
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "kv:e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9",
+      "dependsOn": [
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "kv:f1e2d3c4b5a6978877665544332211ff",
+      "dependsOn": [
+        "suite:0x0202",
+        "suite:0x0320"
+      ]
+    },
+    {
+      "ref": "protocol:tnct/1",
+      "dependsOn": [
+        "suite:0x0101",
+        "suite:0x0102",
+        "suite:0x0201",
+        "suite:0x0210"
+      ]
+    },
+    {
+      "ref": "recipients:badwolf.software/acme/prod/devices",
+      "dependsOn": [
+        "suite:0x0201",
+        "suite:0x0210"
+      ]
+    },
+    {
+      "ref": "signer:badwolf.software/acme/prod/offline",
+      "dependsOn": [
+        "suite:0x0330"
+      ]
+    },
+    {
+      "ref": "signer:badwolf.software/acme/prod/owner",
+      "dependsOn": [
+        "suite:0x0301"
+      ]
+    },
+    {
+      "ref": "signer:badwolf.software/acme/prod/security",
+      "dependsOn": [
+        "suite:0x0301"
+      ]
+    },
+    {
+      "ref": "suite:0x0101",
+      "dependsOn": [
+        "alg:aes-256-gcm",
+        "alg:hkdf-sha-256",
+        "alg:sha-256"
+      ]
+    },
+    {
+      "ref": "suite:0x0102",
+      "dependsOn": [
+        "alg:chacha20-poly1305",
+        "alg:hkdf-sha-256",
+        "alg:sha-256"
+      ]
+    },
+    {
+      "ref": "suite:0x0201",
+      "dependsOn": [
+        "alg:aes-256-gcm",
+        "alg:dhkem-x25519-hkdf-sha256",
+        "alg:hkdf-sha-256"
+      ]
+    },
+    {
+      "ref": "suite:0x0202",
+      "dependsOn": [
+        "alg:aes-256-gcm",
+        "alg:dhkem-p256-hkdf-sha256",
+        "alg:hkdf-sha-256"
+      ]
+    },
+    {
+      "ref": "suite:0x0210",
+      "dependsOn": [
+        "alg:aes-256-gcm",
+        "alg:hkdf-sha-256",
+        "alg:x25519mlkem768"
+      ]
+    },
+    {
+      "ref": "suite:0x0301",
+      "dependsOn": [
+        "alg:ed25519"
+      ]
+    },
+    {
+      "ref": "suite:0x0320",
+      "dependsOn": [
+        "alg:ed25519",
+        "alg:ml-dsa-65"
+      ]
+    },
+    {
+      "ref": "suite:0x0330",
+      "dependsOn": [
+        "alg:slh-dsa-sha2-128s"
+      ]
+    },
+    {
+      "ref": "suite:0x0401",
+      "dependsOn": [
+        "alg:hmac-sha-256"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/azure",
+      "dependsOn": [
+        "recipients:badwolf.software/acme/prod/devices",
+        "suite:0x0201",
+        "suite:0x0210"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/ermine",
+      "dependsOn": [
+        "kv:e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9",
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/licence",
+      "dependsOn": [
+        "kv:2b7e151628aed2a6abf7158809cf4f3c",
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/licence-wire",
+      "dependsOn": [
+        "kv:6d1f0c9b8a7e5d4c3b2a1f0e9d8c7b6a",
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/or",
+      "dependsOn": [
+        "kv:0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/purpure",
+      "dependsOn": [
+        "kv:f1e2d3c4b5a6978877665544332211ff",
+        "suite:0x0101"
+      ]
+    },
+    {
+      "ref": "tincture:badwolf.software/acme/prod/vert",
+      "dependsOn": [
+        "kv:41d0b6f9ee2a4c7d8b1e9f0a3c5d7e21",
+        "kv:9f3c1e7a52b84d06a1c2e3f4b5d6c7e8",
+        "kv:c8a2f4e6d0b1a3c5e7f9d2b4a6c8e0f1",
+        "suite:0x0101",
+        "suite:0x0102"
+      ]
+    }
+  ]
+}

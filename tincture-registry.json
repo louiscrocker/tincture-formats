@@ -1,0 +1,949 @@
+{
+  "$schema": "./tincture-registry.schema.json",
+  "registry": "tincture-suites",
+  "version": "0.1.0",
+  "published": "2026-09-28",
+  "source": "docs/spec/04-suites.md and docs/spec/12-quantum.md (Draft 0.1)",
+  "license": "MIT (see formats/LICENSE)",
+  "suites": [
+    {
+      "id": "0x0101",
+      "name": "A256GCM-HS256",
+      "class": "envelope-symmetric",
+      "algorithms": [
+        "AES-256-GCM",
+        "HKDF-SHA-256",
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "AES_GCM_256",
+        "AES-256-GCM",
+        "aes-256-gcm",
+        "AES-256"
+      ],
+      "references": [
+        "NIST SP 800-38D",
+        "RFC 5869",
+        "FIPS 197"
+      ],
+      "nearestFor": [
+        "AES_GCM_128",
+        "AES-128-GCM",
+        "aes-128-gcm"
+      ]
+    },
+    {
+      "id": "0x0102",
+      "name": "C20P1305-HS256",
+      "class": "envelope-symmetric",
+      "algorithms": [
+        "ChaCha20-Poly1305",
+        "HKDF-SHA-256",
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "ChaCha20Poly1305",
+        "ChaCha20-Poly1305",
+        "chacha20-poly1305"
+      ],
+      "references": [
+        "RFC 8439",
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0103",
+      "name": "A256GCM-HS384",
+      "class": "envelope-symmetric",
+      "algorithms": [
+        "AES-256-GCM",
+        "HKDF-SHA-384",
+        "SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [],
+      "references": [
+        "NIST SP 800-38D",
+        "RFC 5869",
+        "CNSA 2.0"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0201",
+      "name": "HPKE-X25519-A256GCM",
+      "class": "envelope-sealed",
+      "algorithms": [
+        "DHKEM(X25519, HKDF-SHA256)",
+        "HKDF-SHA256",
+        "AES-256-GCM"
+      ],
+      "hpke": {
+        "kem": "0x0020",
+        "kdf": "0x0001",
+        "aead": "0x0002"
+      },
+      "state": "recommended",
+      "fips": false,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [],
+      "references": [
+        "RFC 9180",
+        "RFC 7748"
+      ],
+      "nearestFor": [
+        "X25519",
+        "ECDH-X25519"
+      ]
+    },
+    {
+      "id": "0x0202",
+      "name": "HPKE-P256-A256GCM",
+      "class": "envelope-sealed",
+      "algorithms": [
+        "DHKEM(P-256, HKDF-SHA256)",
+        "HKDF-SHA256",
+        "AES-256-GCM"
+      ],
+      "hpke": {
+        "kem": "0x0010",
+        "kdf": "0x0001",
+        "aead": "0x0002"
+      },
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "ECDH-P256"
+      ],
+      "references": [
+        "RFC 9180",
+        "NIST SP 800-56A Rev. 3"
+      ],
+      "nearestFor": [
+        "ECIES_P256",
+        "ECIES-P256"
+      ]
+    },
+    {
+      "id": "0x0203",
+      "name": "HPKE-P384-A256GCM-HS384",
+      "class": "envelope-sealed",
+      "algorithms": [
+        "DHKEM(P-384, HKDF-SHA384)",
+        "HKDF-SHA384",
+        "AES-256-GCM"
+      ],
+      "hpke": {
+        "kem": "0x0011",
+        "kdf": "0x0002",
+        "aead": "0x0002"
+      },
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "ECDH-P384"
+      ],
+      "references": [
+        "RFC 9180",
+        "NIST SP 800-56A Rev. 3"
+      ],
+      "nearestFor": [
+        "ECIES_P384",
+        "ECIES-P384"
+      ]
+    },
+    {
+      "id": "0x0210",
+      "name": "HPKE-X25519MLKEM768-A256GCM",
+      "class": "envelope-sealed",
+      "algorithms": [
+        "X25519",
+        "ML-KEM-768",
+        "HKDF-SHA256",
+        "AES-256-GCM"
+      ],
+      "hpke": {
+        "kem": "TBD (confirm against the IANA HPKE registry)",
+        "kdf": "0x0001",
+        "aead": "0x0002"
+      },
+      "state": "provisional",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "hybrid",
+      "aliases": [
+        "X25519MLKEM768",
+        "X-Wing"
+      ],
+      "references": [
+        "FIPS 203",
+        "RFC 9180",
+        "draft-connolly-cfrg-xwing-kem"
+      ],
+      "nearestFor": [
+        "ML-KEM-768",
+        "MLKEM768",
+        "ML-KEM-512"
+      ]
+    },
+    {
+      "id": "0x0211",
+      "name": "HPKE-MLKEM1024-A256GCM-HS384",
+      "class": "envelope-sealed",
+      "algorithms": [
+        "ML-KEM-1024",
+        "HKDF-SHA384",
+        "AES-256-GCM"
+      ],
+      "hpke": {
+        "kem": "TBD (confirm against the IANA HPKE registry)",
+        "kdf": "0x0002",
+        "aead": "0x0002"
+      },
+      "state": "provisional",
+      "fips": true,
+      "web": false,
+      "cnsa2": true,
+      "pq": "pq",
+      "aliases": [
+        "ML-KEM-1024",
+        "MLKEM1024"
+      ],
+      "references": [
+        "FIPS 203",
+        "RFC 9180",
+        "CNSA 2.0"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0301",
+      "name": "ED25519",
+      "class": "signature",
+      "algorithms": [
+        "Ed25519"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "Ed25519",
+        "ED25519",
+        "EdDSA"
+      ],
+      "references": [
+        "RFC 8032",
+        "FIPS 186-5"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0302",
+      "name": "ECDSA-P256-SHA256",
+      "class": "signature",
+      "algorithms": [
+        "ECDSA P-256",
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "ECDSA_P256",
+        "ECDSA-P256",
+        "ES256"
+      ],
+      "references": [
+        "FIPS 186-5",
+        "RFC 6979"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0303",
+      "name": "ECDSA-P384-SHA384",
+      "class": "signature",
+      "algorithms": [
+        "ECDSA P-384",
+        "SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "ECDSA_P384",
+        "ECDSA-P384",
+        "ES384"
+      ],
+      "references": [
+        "FIPS 186-5"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0310",
+      "name": "ML-DSA-65",
+      "class": "signature",
+      "algorithms": [
+        "ML-DSA-65"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "pq",
+      "aliases": [
+        "ML-DSA-65",
+        "MLDSA65"
+      ],
+      "references": [
+        "FIPS 204"
+      ],
+      "nearestFor": [
+        "ML-DSA-44"
+      ]
+    },
+    {
+      "id": "0x0311",
+      "name": "ML-DSA-87",
+      "class": "signature",
+      "algorithms": [
+        "ML-DSA-87"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": true,
+      "pq": "pq",
+      "aliases": [
+        "ML-DSA-87",
+        "MLDSA87"
+      ],
+      "references": [
+        "FIPS 204",
+        "CNSA 2.0"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0320",
+      "name": "ED25519+ML-DSA-65",
+      "class": "signature",
+      "algorithms": [
+        "Ed25519",
+        "ML-DSA-65"
+      ],
+      "state": "provisional",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "hybrid",
+      "aliases": [],
+      "references": [
+        "RFC 8032",
+        "FIPS 204",
+        "IETF composite signatures draft"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0330",
+      "name": "SLH-DSA-SHA2-128s",
+      "class": "signature",
+      "algorithms": [
+        "SLH-DSA-SHA2-128s"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "pq",
+      "aliases": [
+        "SLH-DSA-SHA2-128s",
+        "SLHDSA128S"
+      ],
+      "references": [
+        "FIPS 205"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0340",
+      "name": "RSA-PSS-SHA256",
+      "class": "signature",
+      "algorithms": [
+        "RSASSA-PSS",
+        "SHA-256",
+        "MGF1-SHA-256"
+      ],
+      "state": "allowed",
+      "verifyOnly": true,
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [
+        "RSA_PSS_SHA256",
+        "RSA-PSS",
+        "PS256"
+      ],
+      "references": [
+        "RFC 8017"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0401",
+      "name": "HMAC-SHA256",
+      "class": "mac",
+      "algorithms": [
+        "HMAC",
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "HMAC",
+        "HMAC-SHA256",
+        "HS256"
+      ],
+      "references": [
+        "RFC 2104",
+        "FIPS 198-1"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0402",
+      "name": "HMAC-SHA384",
+      "class": "mac",
+      "algorithms": [
+        "HMAC",
+        "SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [
+        "HMAC-SHA384",
+        "HS384"
+      ],
+      "references": [
+        "RFC 2104",
+        "FIPS 198-1"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0501",
+      "name": "HKDF-SHA256",
+      "class": "kdf",
+      "algorithms": [
+        "HKDF",
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "HKDF",
+        "HKDF-SHA256"
+      ],
+      "references": [
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0502",
+      "name": "HKDF-SHA384",
+      "class": "kdf",
+      "algorithms": [
+        "HKDF",
+        "SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [
+        "HKDF-SHA384"
+      ],
+      "references": [
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0503",
+      "name": "KDF-CTR-HMAC-SHA256",
+      "class": "kdf",
+      "algorithms": [
+        "SP 800-108 counter mode",
+        "HMAC-SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [],
+      "references": [
+        "NIST SP 800-108r1"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0504",
+      "name": "KDF-CTR-CMAC-AES256",
+      "class": "kdf",
+      "algorithms": [
+        "SP 800-108 counter mode",
+        "CMAC-AES-256"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [],
+      "references": [
+        "NIST SP 800-108r1",
+        "NIST SP 800-38B"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0510",
+      "name": "ARGON2ID",
+      "class": "kdf",
+      "algorithms": [
+        "Argon2id"
+      ],
+      "state": "allowed",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "Argon2id",
+        "Argon2"
+      ],
+      "references": [
+        "RFC 9106"
+      ],
+      "notes": "Passphrase to key; minimum t=3, m=64 MiB, p=4; T0/T1 boundaries only.",
+      "nearestFor": []
+    },
+    {
+      "id": "0x0601",
+      "name": "X25519-HKDF256",
+      "class": "key-agreement",
+      "algorithms": [
+        "X25519",
+        "HKDF-SHA-256"
+      ],
+      "state": "recommended",
+      "fips": false,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [],
+      "references": [
+        "RFC 7748",
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0602",
+      "name": "ECDH-P256-HKDF256",
+      "class": "key-agreement",
+      "algorithms": [
+        "ECDH P-256",
+        "HKDF-SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [],
+      "references": [
+        "NIST SP 800-56A Rev. 3",
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0603",
+      "name": "ECDH-P384-HKDF384",
+      "class": "key-agreement",
+      "algorithms": [
+        "ECDH P-384",
+        "HKDF-SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "vulnerable",
+      "aliases": [],
+      "references": [
+        "NIST SP 800-56A Rev. 3",
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0610",
+      "name": "X25519MLKEM768-HKDF256",
+      "class": "key-agreement",
+      "algorithms": [
+        "X25519",
+        "ML-KEM-768",
+        "HKDF-SHA-256"
+      ],
+      "state": "provisional",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "hybrid",
+      "aliases": [],
+      "references": [
+        "RFC 7748",
+        "FIPS 203",
+        "RFC 5869"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0701",
+      "name": "AES-KWP-256",
+      "class": "key-wrap",
+      "algorithms": [
+        "AES Key Wrap with Padding",
+        "AES-256"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [
+        "AES-KWP",
+        "AES-KW"
+      ],
+      "references": [
+        "RFC 5649",
+        "NIST SP 800-38F"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0801",
+      "name": "SHAMIR-GF256",
+      "class": "secret-sharing",
+      "algorithms": [
+        "Shamir secret sharing over GF(2^8)"
+      ],
+      "state": "recommended",
+      "fips": false,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [],
+      "references": [
+        "Shamir 1979"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0901",
+      "name": "SHA-256",
+      "class": "hash",
+      "algorithms": [
+        "SHA-256"
+      ],
+      "state": "recommended",
+      "fips": true,
+      "web": true,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "SHA256",
+        "SHA-256",
+        "sha-256"
+      ],
+      "references": [
+        "FIPS 180-4"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0902",
+      "name": "SHA-384",
+      "class": "hash",
+      "algorithms": [
+        "SHA-384"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [
+        "SHA384",
+        "SHA-384",
+        "sha-384"
+      ],
+      "references": [
+        "FIPS 180-4"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0903",
+      "name": "SHA-512",
+      "class": "hash",
+      "algorithms": [
+        "SHA-512"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": true,
+      "cnsa2": true,
+      "pq": "n/a",
+      "aliases": [
+        "SHA512",
+        "SHA-512",
+        "sha-512"
+      ],
+      "references": [
+        "FIPS 180-4"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0911",
+      "name": "SHA3-256",
+      "class": "hash",
+      "algorithms": [
+        "SHA3-256"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "SHA3_256",
+        "SHA3-256",
+        "sha3-256"
+      ],
+      "references": [
+        "FIPS 202"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0912",
+      "name": "SHA3-512",
+      "class": "hash",
+      "algorithms": [
+        "SHA3-512"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "SHA3_512",
+        "SHA3-512"
+      ],
+      "references": [
+        "FIPS 202"
+      ],
+      "nearestFor": []
+    },
+    {
+      "id": "0x0921",
+      "name": "SHAKE256",
+      "class": "hash",
+      "algorithms": [
+        "SHAKE256"
+      ],
+      "state": "allowed",
+      "fips": true,
+      "web": false,
+      "cnsa2": false,
+      "pq": "n/a",
+      "aliases": [
+        "SHAKE256"
+      ],
+      "references": [
+        "FIPS 202"
+      ],
+      "nearestFor": []
+    }
+  ],
+  "neverRegistered": [
+    {
+      "name": "DES and 3DES",
+      "aliases": [
+        "DES",
+        "3DES",
+        "TDES",
+        "TripleDES",
+        "DESede"
+      ],
+      "reason": "Obsolete 64-bit block ciphers."
+    },
+    {
+      "name": "RC4",
+      "aliases": [
+        "RC4",
+        "ARCFOUR"
+      ],
+      "reason": "Broken stream cipher."
+    },
+    {
+      "name": "AES-ECB",
+      "aliases": [
+        "AES-ECB",
+        "AES_ECB"
+      ],
+      "reason": "Leaks plaintext structure; no authentication."
+    },
+    {
+      "name": "Unauthenticated AES-CBC or AES-CTR",
+      "aliases": [
+        "AES_CBC_256",
+        "AES-CBC",
+        "AES-256-CBC",
+        "AES-CTR"
+      ],
+      "reason": "No integrity; padding-oracle exposure."
+    },
+    {
+      "name": "MD5",
+      "aliases": [
+        "MD5"
+      ],
+      "reason": "Collisions are practical."
+    },
+    {
+      "name": "SHA-1",
+      "aliases": [
+        "SHA1",
+        "SHA-1"
+      ],
+      "reason": "Collisions are practical (verify-only exceptions need an ADR)."
+    },
+    {
+      "name": "RSA PKCS #1 v1.5 encryption",
+      "aliases": [
+        "RSAES-PKCS1-v1_5"
+      ],
+      "reason": "Padding-oracle attacks (Bleichenbacher); use HPKE sealed-to suites."
+    },
+    {
+      "name": "RSA below 3072 bits",
+      "aliases": [
+        "RSA1024",
+        "RSA-1024",
+        "RSA2048",
+        "RSA-2048"
+      ],
+      "reason": "Below 128-bit security (NIST SP 800-57 Part 1); Tincture registers no RSA key under 3072 bits."
+    },
+    {
+      "name": "Custom or unpublished primitives",
+      "aliases": [
+        "WhiteBox_AES_128",
+        "WhiteBox_AES_256"
+      ],
+      "reason": "Only published primitives with public test vectors are registered."
+    }
+  ],
+  "notRegistered": [
+    {
+      "name": "RSA-OAEP key transport",
+      "aliases": [
+        "RSA_OAEP_SHA256",
+        "RSA_OAEP_SHA512",
+        "RSA-OAEP",
+        "RSA-3072",
+        "RSA-4096"
+      ],
+      "suggest": [
+        "0x0202",
+        "0x0210"
+      ],
+      "reason": "Tincture seals to public keys with HPKE; RSA encryption is not registered."
+    },
+    {
+      "name": "RSA PKCS #1 v1.5 signatures",
+      "aliases": [
+        "RSA_PKCS1_SHA256",
+        "RS256"
+      ],
+      "suggest": [
+        "0x0301",
+        "0x0302",
+        "0x0310"
+      ],
+      "reason": "Tincture never creates RSA signatures; RSA-PSS is verify-only."
+    },
+    {
+      "name": "PBKDF2 and scrypt",
+      "aliases": [
+        "PBKDF2",
+        "Scrypt"
+      ],
+      "suggest": [
+        "0x0510"
+      ],
+      "reason": "Argon2id is the registered passphrase KDF."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://badwolf.software/tincture/formats/tincture-registry.schema.json",
+  "title": "Tincture suite registry",
+  "description": "Machine-readable form of the Tincture suite registry (docs/spec/04-suites.md) with quantum status (docs/spec/12-quantum.md).",
+  "type": "object",
+  "required": ["registry", "version", "published", "suites", "neverRegistered", "notRegistered"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "registry": { "const": "tincture-suites" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "published": { "type": "string", "format": "date" },
+    "source": { "type": "string" },
+    "license": { "type": "string" },
+    "suites": { "type": "array", "items": { "$ref": "#/$defs/suite" }, "minItems": 1 },
+    "neverRegistered": { "type": "array", "items": { "$ref": "#/$defs/excluded" } },
+    "notRegistered": { "type": "array", "items": { "$ref": "#/$defs/excluded" } }
+  },
+  "$defs": {
+    "suiteId": { "type": "string", "pattern": "^0x[0-9a-f]{4}$" },
+    "suite": {
+      "type": "object",
+      "required": ["id", "name", "class", "algorithms", "state", "fips", "web", "cnsa2", "pq", "aliases", "nearestFor", "references"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/suiteId" },
+        "name": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9a-z+-]*$" },
+        "class": { "enum": ["envelope-symmetric", "envelope-sealed", "signature", "mac", "kdf", "key-agreement", "key-wrap", "secret-sharing", "hash"] },
+        "algorithms": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "hpke": {
+          "type": "object", "additionalProperties": false, "required": ["kem", "kdf", "aead"],
+          "properties": { "kem": { "type": "string" }, "kdf": { "type": "string" }, "aead": { "type": "string" } }
+        },
+        "state": { "enum": ["provisional", "recommended", "allowed", "deprecated", "forbidden"] },
+        "verifyOnly": { "type": "boolean" },
+        "fips": { "type": "boolean", "description": "Every primitive is approved in current NIST FIPS/SP publications." },
+        "web": { "type": "boolean", "description": "Available through WebCrypto without shipping primitive code." },
+        "cnsa2": { "type": "boolean", "description": "Consistent with the NSA CNSA 2.0 algorithm list." },
+        "pq": { "enum": ["n/a", "vulnerable", "hybrid", "pq"], "description": "Quantum status (12-quantum.md section 4)." },
+        "aliases": { "type": "array", "items": { "type": "string" }, "description": "Names other tools use for exactly this construction or its primary algorithm." },
+        "nearestFor": { "type": "array", "items": { "type": "string" }, "description": "Names for which this suite is the nearest registered replacement (a design tool should suggest it, noting the change)." },
+        "references": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "notes": { "type": "string" }
+      }
+    },
+    "excluded": {
+      "type": "object",
+      "required": ["name", "aliases", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "suggest": { "type": "array", "items": { "$ref": "#/$defs/suiteId" } },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

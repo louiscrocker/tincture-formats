@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://badwolf.software/tincture/formats/blazon.schema.json",
+  "title": "Tincture blazon (compiled form)",
+  "description": "The compiled, canonical JSON form of a blazon (docs/spec/06-blazon.md). The signed bundle is {\"blazon\": <this>, \"signatures\": [...]}. Structural validity only: semantic rules (transfer edges, reveal grants, pipeline type checking) are enforced by the blazon compiler and runtime.",
+  "type": "object",
+  "required": ["blazon", "signers", "tinctures", "profiles"],
+  "additionalProperties": false,
+  "properties": {
+    "blazon": {
+      "type": "object",
+      "required": ["namespace", "version", "spec"],
+      "additionalProperties": false,
+      "properties": {
+        "namespace": { "type": "string", "pattern": "^[a-z0-9.-]+(/[a-z0-9._-]+)*$" },
+        "version": { "type": "integer", "minimum": 1 },
+        "spec": { "type": "string", "pattern": "^tincture/\\d+\\.\\d+$" },
+        "allow_provisional": { "type": "boolean" },
+        "not_after": { "type": "string", "format": "date-time" },
+        "description": { "type": "string" }
+      }
+    },
+    "signers": {
+      "type": "object",
+      "required": ["threshold", "keys"],
+      "additionalProperties": false,
+      "properties": {
+        "threshold": { "type": "integer", "minimum": 1 },
+        "keys": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["id", "suite", "public"], "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/name" },
+              "suite": { "$ref": "#/$defs/suiteRef" },
+              "public": { "$ref": "#/$defs/base64url" }
+            }
+          }
+        },
+        "emergency_disable": { "enum": ["threshold", "any"] }
+      }
+    },
+    "defaults": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "min_tier": { "$ref": "#/$defs/tier" },
+        "handle_ttl": { "$ref": "#/$defs/duration" },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "quantum": {
+      "type": "object", "additionalProperties": false, "required": ["deadline", "enforce"],
+      "properties": {
+        "deadline": { "type": "string", "format": "date" },
+        "migration": { "$ref": "#/$defs/duration" },
+        "enforce": { "enum": ["off", "warn", "enforce"] }
+      }
+    },
+    "rules": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "no_self_layering": { "type": "boolean" },
+        "max_layer_depth": { "type": "integer", "minimum": 1, "maximum": 16 },
+        "transfer_graph": { "type": "array", "items": { "type": "array", "prefixItems": [{ "$ref": "#/$defs/name" }, { "$ref": "#/$defs/name" }], "minItems": 2, "maxItems": 2 } },
+        "reveal_allow": { "type": "array", "items": { "$ref": "#/$defs/name" } }
+      }
+    },
+    "tinctures": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/tincture" } },
+    "profiles": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/profile" } },
+    "pipelines": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/pipeline" } },
+    "revoked": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "key_versions": {
+          "type": "array",
+          "items": { "type": "object", "required": ["kv_id", "reason"], "additionalProperties": false,
+            "properties": { "kv_id": { "$ref": "#/$defs/hex16" }, "reason": { "type": "string" } } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,62}$" },
+    "hex16": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+    "base64url": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+    "suiteRef": { "type": "string", "pattern": "^0x[0-9a-f]{4}$", "description": "A suite ID from the registry; the compiler resolves names to IDs." },
+    "tier": { "enum": ["T0", "T1", "T2", "T3"] },
+    "audit": { "enum": ["full", "summary", "off"] },
+    "duration": { "type": "string", "pattern": "^\\d+(s|m|h|d|y)$" },
+    "size": { "type": "string", "pattern": "^\\d+(B|KiB|MiB|GiB|TiB)$" },
+    "suiteEntry": {
+      "oneOf": [
+        { "$ref": "#/$defs/suiteRef" },
+        { "type": "object", "required": ["id"], "additionalProperties": false,
+          "properties": { "id": { "$ref": "#/$defs/suiteRef" }, "state": { "enum": ["deprecated", "forbidden"] } } }
+      ]
+    },
+    "tincture": {
+      "type": "object",
+      "required": ["id", "kind", "suites"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/hex16" },
+        "kind": { "enum": ["symmetric", "sealed-to"] },
+        "role": { "enum": ["clear", "key-material", "canary"] },
+        "suites": { "type": "array", "items": { "$ref": "#/$defs/suiteEntry" } },
+        "mode": { "enum": ["direct", "wrapped", "auto"] },
+        "context": { "enum": ["required", "optional", "forbidden"] },
+        "padding": { "type": "string", "pattern": "^(none|padme|buckets\\(\\d+(, ?\\d+)*\\))$" },
+        "max_plaintext": { "$ref": "#/$defs/size" },
+        "segment_size": { "type": "integer", "minimum": 1024, "maximum": 16777216, "description": "Plaintext bytes per segment for segmented bodies (docs/spec/03-envelope.md section 10); default 65536." },
+        "min_tier": { "$ref": "#/$defs/tier" },
+        "min_pq_tier": { "$ref": "#/$defs/tier" },
+        "horizon": { "$ref": "#/$defs/duration" },
+        "audit": { "$ref": "#/$defs/audit" },
+        "rotation": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "max_age": { "$ref": "#/$defs/duration" },
+            "max_seals": { "type": "integer", "minimum": 1 },
+            "max_bytes": { "$ref": "#/$defs/size" },
+            "propagation": { "$ref": "#/$defs/duration" },
+            "retain": { "$ref": "#/$defs/duration" },
+            "rewrap": { "enum": ["none", "lazy", "bulk", "lazy+bulk"] }
+          }
+        },
+        "recipients": {
+          "oneOf": [
+            { "type": "string", "pattern": "^directory:[a-z][a-z0-9-]*$" },
+            { "type": "array", "items": { "type": "object", "required": ["kid", "suite", "public"], "additionalProperties": false,
+              "properties": { "kid": { "$ref": "#/$defs/hex16" }, "suite": { "$ref": "#/$defs/suiteRef" }, "public": { "$ref": "#/$defs/base64url" } } } }
+          ]
+        },
+        "attestation": { "type": "array", "items": { "enum": ["android-key", "app-attest", "tpm-quote"] } }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": ["id", "version", "op", "in", "out"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/hex16" },
+        "version": { "type": "integer", "minimum": 1 },
+        "op": { "enum": ["seal", "open", "transfer", "rewrap", "sign", "verify", "mac", "verify-mac", "digest", "derive", "agree", "generate", "wrap", "unwrap", "import", "export", "split", "combine"] },
+        "in": { "$ref": "#/$defs/name" },
+        "out": { "$ref": "#/$defs/name" },
+        "suite": { "$ref": "#/$defs/suiteRef" },
+        "context": { "enum": ["required", "optional", "forbidden"] },
+        "context_out": { "enum": ["same", "none", "caller"] },
+        "callers": { "type": "array", "items": { "type": "string" } },
+        "limits": {
+          "type": "object", "additionalProperties": false,
+          "properties": { "max_calls_per_minute": { "type": "integer", "minimum": 1 }, "max_bytes_per_call": { "$ref": "#/$defs/size" } }
+        },
+        "reveal": { "type": "boolean" },
+        "export": { "type": "boolean" },
+        "import": { "type": "boolean" },
+        "min_tier": { "$ref": "#/$defs/tier" },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "valueType": { "type": "string", "pattern": "^(envelope|data|key|public)<[a-z][a-z0-9-]{0,62}>$" },
+    "ref": { "type": "string", "pattern": "^\\$(input\\.)?[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)?$" },
+    "pipeline": {
+      "type": "object",
+      "required": ["id", "version", "inputs", "outputs", "steps", "output"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/hex16" },
+        "version": { "type": "integer", "minimum": 1 },
+        "inputs": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/valueType" } },
+        "outputs": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/valueType" } },
+        "reveal": { "type": "boolean" },
+        "errors": { "enum": ["opaque", "detailed"] },
+        "boundaries": { "type": "array", "items": { "$ref": "#/$defs/name" } },
+        "carry_tincture": { "$ref": "#/$defs/name" },
+        "steps": {
+          "type": "array", "minItems": 1, "maxItems": 64,
+          "items": {
+            "type": "object", "required": ["id", "use"], "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/name" },
+              "use": { "type": "string", "pattern": "^(profile:[a-z][a-z0-9-]*|extract|concat|split-bytes|as-key|assert-equal|boundary)$" },
+              "in": { "oneOf": [{ "$ref": "#/$defs/ref" }, { "type": "array", "items": { "$ref": "#/$defs/ref" } }] },
+              "key": { "$ref": "#/$defs/ref" },
+              "field": { "type": "string" },
+              "range": { "type": "array", "prefixItems": [{ "type": "integer", "minimum": 0 }, { "type": "integer", "minimum": 1 }], "minItems": 2, "maxItems": 2 },
+              "lengths": { "type": "array", "items": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "const": "rest" }] } },
+              "as": { "$ref": "#/$defs/name" },
+              "to": { "$ref": "#/$defs/name" },
+              "carry": { "type": "object", "additionalProperties": { "$ref": "#/$defs/ref" } },
+              "context": { "type": "string" }
+            }
+          }
+        },
+        "output": { "type": "object", "propertyNames": { "$ref": "#/$defs/name" }, "additionalProperties": { "$ref": "#/$defs/ref" } }
+      }
+    }
+  }
+}
