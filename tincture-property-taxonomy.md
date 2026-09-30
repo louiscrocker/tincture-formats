@@ -3,7 +3,9 @@
 **Version:** `tincture-inventory/0.2` · 2026-09-29 · Licence: MIT (see `LICENSE` in this directory)
 
 This document is the taxonomy of the `tincture` top-level namespace for CycloneDX `properties`,
-as registered (or requested) in the [CycloneDX Property Taxonomy](https://github.com/CycloneDX/cyclonedx-property-taxonomy).
+as registered in the [CycloneDX Property Taxonomy](https://github.com/CycloneDX/cyclonedx-property-taxonomy)
+on 2026-09-30 (https://github.com/CycloneDX/cyclonedx-property-taxonomy/pull/201), administered by
+[Lou Crocker](https://github.com/louiscrocker).
 It is the canonical, public list: every property name a Tincture CBOM export may emit, the
 component it appears on, and the format of its value. It ships with the Tincture formats
 (`tincture-registry.json`, the schemas and the examples) so that consumers can vendor the whole
