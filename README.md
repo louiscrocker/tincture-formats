@@ -1,7 +1,7 @@
 # Tincture formats
 
 Machine-readable formats for **Tincture**, a data-protection framework from
-[BADWOLF Software](https://badwolf.software): typed cryptographic domains, signed policy
+BADWOLF Software ([Lou Crocker](https://github.com/louiscrocker)): typed cryptographic domains, signed policy
 manifests, envelope encryption with key and algorithm rotation, and a keyless inventory of
 protected data at rest that exports as a CycloneDX CBOM.
 
