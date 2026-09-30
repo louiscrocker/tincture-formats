@@ -34,7 +34,7 @@
     "properties": [
       {
         "name": "tincture:inventory:schema",
-        "value": "tincture-inventory/0.1"
+        "value": "tincture-inventory/0.2"
       },
       {
         "name": "tincture:inventory:scanned-at",
@@ -42,7 +42,19 @@
       },
       {
         "name": "tincture:inventory:sources",
-        "value": "fs:/srv/acme/data;s3:acme-prod-blobs/;db:crm.contacts.ssn;db:licensing.licences.blob"
+        "value": "fs:/srv/acme/data"
+      },
+      {
+        "name": "tincture:inventory:sources",
+        "value": "s3:acme-prod-blobs/"
+      },
+      {
+        "name": "tincture:inventory:sources",
+        "value": "db:crm.contacts.ssn"
+      },
+      {
+        "name": "tincture:inventory:sources",
+        "value": "db:licensing.licences.blob"
       },
       {
         "name": "tincture:inventory:redaction",
@@ -1581,11 +1593,23 @@
         },
         {
           "name": "tincture:recipients:suites",
-          "value": "0x0201,0x0210"
+          "value": "0x0201"
+        },
+        {
+          "name": "tincture:recipients:suites",
+          "value": "0x0210"
         },
         {
           "name": "tincture:recipients:attestation",
-          "value": "android-key,app-attest,tpm-quote"
+          "value": "android-key"
+        },
+        {
+          "name": "tincture:recipients:attestation",
+          "value": "app-attest"
+        },
+        {
+          "name": "tincture:recipients:attestation",
+          "value": "tpm-quote"
         },
         {
           "name": "tincture:tier",
@@ -1637,7 +1661,11 @@
         },
         {
           "name": "tincture:suites",
-          "value": "0x0201,0x0210"
+          "value": "0x0201"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0210"
         },
         {
           "name": "tincture:envelopes:count",
@@ -1661,7 +1689,11 @@
         },
         {
           "name": "tincture:quantum:status",
-          "value": "hybrid,vulnerable"
+          "value": "hybrid"
+        },
+        {
+          "name": "tincture:quantum:status",
+          "value": "vulnerable"
         },
         {
           "name": "tincture:quantum:debt:count",
@@ -2065,7 +2097,11 @@
         },
         {
           "name": "tincture:suites",
-          "value": "0x0101,0x0102"
+          "value": "0x0101"
+        },
+        {
+          "name": "tincture:suites",
+          "value": "0x0102"
         },
         {
           "name": "tincture:envelopes:count",
