@@ -1027,7 +1027,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5ca90abd8e2874b6005b5d89afe894bc4e5a8d88fd86325d164f31a8342f09d7"
+          "content": "1d5f93f04e5b12c6e12dd0029d34d5e95e86401046bcae27bf8bfdd3a0785f67"
         }
       ],
       "properties": [
@@ -1037,7 +1037,7 @@
         },
         {
           "name": "tincture:blazon:spec",
-          "value": "tincture/0.1"
+          "value": "tincture/0.3"
         },
         {
           "name": "tincture:blazon:version",

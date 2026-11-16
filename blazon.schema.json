@@ -14,7 +14,7 @@
       "properties": {
         "namespace": { "type": "string", "pattern": "^[a-z0-9.-]+(/[a-z0-9._-]+)*$" },
         "version": { "type": "integer", "minimum": 1 },
-        "spec": { "type": "string", "pattern": "^tincture/\\d+\\.\\d+$" },
+        "spec": { "enum": ["tincture/0.2", "tincture/0.3"], "description": "The specification draft the blazon was compiled for. A loader refuses any other value (docs/spec/06-blazon.md section 2)." },
         "allow_provisional": { "type": "boolean" },
         "not_after": { "type": "string", "format": "date-time" },
         "description": { "type": "string" }
@@ -146,6 +146,7 @@
         "out": { "$ref": "#/$defs/name" },
         "suite": { "$ref": "#/$defs/suiteRef" },
         "context": { "enum": ["required", "optional", "forbidden"] },
+        "context_prefix": { "type": "string", "minLength": 1, "maxLength": 255, "pattern": "^[^:]+$", "description": "seal and open profiles only. When set, the context bound into the envelope is \"tincture-profile:\" || context_prefix || \":\" || the caller's context (docs/spec/06-blazon.md section 5.2). 1 to 255 bytes of UTF-8; maxLength here counts characters, the loader counts bytes." },
         "context_out": { "enum": ["same", "none", "caller"] },
         "callers": { "type": "array", "items": { "type": "string" } },
         "limits": {
