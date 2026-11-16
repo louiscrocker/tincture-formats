@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://badwolf.software/tincture/formats/blazon-bundle.schema.json",
+  "title": "Tincture signed blazon bundle",
+  "description": "The signed bundle a runtime loads (docs/spec/06-blazon.md section 7): a compiled blazon and the signatures over it. Structural validity only. Each signature is over \"TNCT/1/blazon\" || 0x00 || JCS(blazon); the bundle's own layout and member order are not signed. A loader additionally refuses repeated member names and numbers that are not non-negative integers below 2^53, which JSON Schema cannot express.",
+  "type": "object",
+  "required": ["blazon", "signatures"],
+  "additionalProperties": false,
+  "properties": {
+    "blazon": { "$ref": "blazon.schema.json" },
+    "signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signer", "suite", "sig"],
+        "additionalProperties": false,
+        "properties": {
+          "signer": {
+            "type": "string",
+            "description": "The id of a key in the currently trusted signer set. Entries by other signers are ignored."
+          },
+          "suite": {
+            "type": "string",
+            "pattern": "^(0x[0-9a-f]{4}|[A-Z0-9+-]+)$",
+            "description": "The signature suite, as a registry ID (\"0x0301\", the form signers write) or a registry name (\"ED25519\"). It must be the suite of the signer's trusted key, or the entry does not count."
+          },
+          "sig": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "The signature, base64url without padding. 0x0301: 64 bytes (RFC 8032). 0x0302: 64 bytes, r || s, each 32 bytes big-endian."
+          }
+        }
+      }
+    }
+  }
+}
