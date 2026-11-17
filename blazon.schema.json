@@ -37,7 +37,12 @@
             }
           }
         },
-        "emergency_disable": { "enum": ["threshold", "any"] }
+        "emergency_disable": { "enum": ["threshold", "any"] },
+        "revoked": {
+          "type": "array", "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Za-z0-9_-]{43}$" },
+          "description": "Signer keys declared revoked: for each, the SHA-256 of the key's bytes (the bytes that `public` encodes), base64url without padding like `public` itself. A loader warns when every signature that counted on a bundle comes from a revoked key; it does not refuse the bundle (docs/spec/06-blazon.md section 7.3)."
+        }
       }
     },
     "defaults": {
