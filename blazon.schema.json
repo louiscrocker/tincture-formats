@@ -77,6 +77,38 @@
             "properties": { "kv_id": { "$ref": "#/$defs/hex16" }, "reason": { "type": "string" } } }
         }
       }
+    },
+    "certificates": {
+      "description": "Optional. How the X.509 certificates of this boundary rotate (certificate rotation extension). A loader that does not implement certificate rotation accepts this member and ignores it (docs/spec/06-blazon.md section 2).",
+      "type": "object", "required": ["issuers", "families"], "additionalProperties": false,
+      "properties": {
+        "issuers": {
+          "type": "object", "propertyNames": { "$ref": "#/$defs/name" },
+          "additionalProperties": {
+            "type": "object", "required": ["url", "anchor_sha256"], "additionalProperties": false,
+            "properties": {
+              "url": { "type": "string", "pattern": "^https://.+" },
+              "anchor_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+            }
+          }
+        },
+        "families": {
+          "type": "object", "minProperties": 1, "propertyNames": { "$ref": "#/$defs/name" },
+          "additionalProperties": {
+            "type": "object", "additionalProperties": false,
+            "required": ["usage", "key_suite", "rotate_every", "prestage", "issuer"],
+            "properties": {
+              "usage": { "enum": ["client", "server"] },
+              "key_suite": { "enum": ["0x0301", "0x0302"] },
+              "rotate_every": { "$ref": "#/$defs/certDuration" },
+              "prestage": { "$ref": "#/$defs/certDuration" },
+              "issuer": { "$ref": "#/$defs/name" },
+              "fallback": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/name" } },
+              "fallback_after": { "$ref": "#/$defs/certDuration" }
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {
@@ -87,6 +119,7 @@
     "tier": { "enum": ["T0", "T1", "T2", "T3"] },
     "audit": { "enum": ["full", "summary", "off"] },
     "duration": { "type": "string", "pattern": "^\\d+(s|m|h|d|y)$" },
+    "certDuration": { "type": "string", "pattern": "^\\d+(s|m|h|d)$", "description": "As duration, without the year unit." },
     "size": { "type": "string", "pattern": "^\\d+(B|KiB|MiB|GiB|TiB)$" },
     "suiteEntry": {
       "oneOf": [
